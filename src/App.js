@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import ListClientesComponent from './components/ListClientesComponent';
+import AddClienteComponent from './components/AddClienteComponent';
+import ListProductosComponent from './components/ListProductosComponent';
+import AddProductoComponent from './components/AddProductoComponent';
+import HeaderComponent from './components/HeaderComponent';
+import FooterComponent from './components/FooterComponent';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <HeaderComponent />
+      <div className="container">
+        <Routes>
+          {/* Rutas para clientes */}
+          <Route path="/" element={<ListClientesComponent />} />
+          <Route path="/clientes" element={<ListClientesComponent />} />
+          <Route path="/add-cliente" element={<AddClienteComponent />} />
+          <Route path="/edit-cliente/:id" element={<AddClienteComponent />} />
+
+          {/* Rutas para productos */}
+          <Route path="/productos" element={<ListProductosComponent />} />
+          <Route path="/add-producto" element={<AddProductoComponent />} />
+          <Route path="/edit-producto/:id" element={<AddProductoComponent />} />
+        </Routes>
+      </div>
+      <FooterComponent />
+    </BrowserRouter>
   );
 }
 
